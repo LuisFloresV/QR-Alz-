@@ -1,0 +1,17 @@
+<%= simple_form_for(@patient) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-inputs">
+    <%= f.input :name ,label: "Nombre", placeholder: "Nombre del paciente", error: 'El nombre no es valido' %>
+    <%= f.input :p_lastname,label: "Apellido Paterno", placeholder: "Apellido Paterno del Paciente",error: 'El apellido no es valido' %>
+    <%= f.input :m_lastname,label: "Apellido Materno", placeholder: "Apellido Materno del Paciente",error: 'El apellido no es valido'  %>
+    <%= f.input :birth,label: "Fecha de nacimiento", as: :date, start_year: Date.today.year - 100,
+                              end_year: Date.today.year - 40,
+                              order: [:month,:day, :year],error: 'La fecha no es valida' %>
+    <%= f.input :emergency_number,label: "Numero de emergencia", placeholder: "XXXXXXXXXX", type: "number",error: 'El numero no es valido' %>
+    <%= f.input :phase,label: "Fase",collection: 1...5 ,error: 'La opcion no es valida' %>
+  </div>
+  <div class="form-actions mb-3">
+    <%= f.button :submit, class: "btn btn-success" %>
+  </div>
+<% end %>

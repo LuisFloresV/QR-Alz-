@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+<p>
+  <strong>P lastname:</strong>
+  <%= @patient.p_lastname %>
+</p>
+<p>
+  <strong>M lastname:</strong>
+  <%= @patient.m_lastname %>
+</p>
+<p>
+  <strong>Birth:</strong>
+  <%= @patient.birth %>
+</p>
+<p>
+  <strong>Emergency number:</strong>
+  <%= @patient.emergency_number %>
+</p>
+<p>
+  <strong>Phase:</strong>
+  <%= @patient.phase %>
+</p>
+<p>
+  <%= image_tag(@patient.qr_code, width: 200, crop: :scale) %>
+</p>
+<p>
+  <%= link_to 'download', rails_blob_path(@patient.qr_code, disposition: 'attachment'), class: "btn btn-info" %>
+</p>
+<%= link_to 'Edit', edit_patient_path(@patient) %> |
+<%= link_to 'Back', patients_path %>

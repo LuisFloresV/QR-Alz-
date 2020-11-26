@@ -1,0 +1,54 @@
+@import "~bootstrap/scss/bootstrap";
+#header {
+    background-color: #003152;
+    font-size: 20px;
+}
+
+#header img {
+    width: 150px;
+}
+
+#main .carousel-inner img {
+    max-height: 75vh;
+    object-fit: cover;
+    filter: grayscale(20%);
+}
+
+#carousel {
+    position: relative;
+}
+
+#carousel .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    z-index: 1;
+}
+
+#carousel .overlay .container,
+#carousel .overlay .row {
+    height: 100%;
+}
+
+#main-logo {
+    width: 100%;
+}
+
+#info-details img {
+    width: 80px;
+    margin: 5px;
+}
+
+#footer {
+    background-color: #003152;
+    height: 120px;
+    color: #b9b9b9;
+}
+
+#footer img {
+    width: 160px;
+}
