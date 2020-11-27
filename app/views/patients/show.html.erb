@@ -1,33 +1,41 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Name:</strong>
-  <%= @patient.name %>
-</p>
-<p>
-  <strong>P lastname:</strong>
-  <%= @patient.p_lastname %>
-</p>
-<p>
-  <strong>M lastname:</strong>
-  <%= @patient.m_lastname %>
-</p>
-<p>
-  <strong>Birth:</strong>
-  <%= @patient.birth %>
-</p>
-<p>
-  <strong>Emergency number:</strong>
-  <%= @patient.emergency_number %>
-</p>
-<p>
-  <strong>Phase:</strong>
-  <%= @patient.phase %>
-</p>
-<p>
-  <%= image_tag(@patient.qr_code, width: 200, crop: :scale) %>
-</p>
-<p>
-  <%= link_to 'download', rails_blob_path(@patient.qr_code, disposition: 'attachment'), class: "btn btn-info" %>
-</p>
-<%= link_to 'Edit', edit_patient_path(@patient) %> |
-<%= link_to 'Back', patients_path %>
+<div class="container my-4 bg-custom py-2 px-2 shadow">
+  <h1> Detalle del paciente:</h1>
+  <div >
+    <div class="row">
+      <div class="col-12 ">
+        <p id="notice"><%= notice %></p>
+        <div class="card shadow bg-white rounded mx-auto" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-12 col-md-6 px-3 py-3">
+              <%= image_tag(@patient.qr_code, width: 250, crop: :scale) %>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="card-body bg-light">
+                <h5 class="card-title"><strong><%= @patient.name %> <%= @patient.p_lastname %> <%= @patient.m_lastname %></strong></h5>
+                <p class="card-text">
+                  <strong>Fecha de nacimiento:</strong>
+                  <%= @patient.birth %>
+                </p>
+                <p class="card-text">
+                  <strong>Numero de emergencia:</strong>
+                  <%= @patient.emergency_number %>
+                </p>
+                <p class="card-text">
+                  <strong>Fase:</strong>
+                  <%= @patient.phase %>
+                </p>
+                <p>
+                  <%= link_to 'Descargar QR', rails_blob_path(@patient.qr_code, disposition: 'attachment'), class: "btn btn-warning" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid text-right">
+          <%= link_to 'Edit', edit_patient_path(@patient), class: "btn btn-secondary" %> |
+          <%= link_to 'Back', patients_path, class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

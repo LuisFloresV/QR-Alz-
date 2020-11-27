@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<div class="container my-3">
+<div class="container my-5">
   <h1>Pacientes: <%=@patients.count%> </h1>
   <table class="table table-striped">
     <thead>
@@ -22,13 +22,16 @@
           <td><%= patient.birth %></td>
           <td><%= patient.emergency_number %></td>
           <td><%= patient.phase %></td>
-          <td><%= link_to 'Show', patient , class: "btn btn-warning"%></td>
-          <td><%= link_to 'Edit', edit_patient_path(patient), class: "btn btn-secondary" %></td>
-          <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          <td><%= link_to 'Detalle', patient , class: "btn btn-warning"%></td>
+          <td><%= link_to 'Editar', edit_patient_path(patient), class: "btn btn-secondary" %></td>
+          <td><%= link_to 'Eliminar', patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <div class="px-2 py-2 mb-5 text-center">
+    <%= will_paginate @patients, :container => false %>
+  </div>
   <br>
   <%= link_to 'New Patient', new_patient_path, class: "btn btn-info"%>
 </div>

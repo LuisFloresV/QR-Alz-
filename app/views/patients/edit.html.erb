@@ -1,6 +1,6 @@
-<div class="container my-2">
+<div class="container my-5">
   <h1>Editar paciente: <%=@patient.name%> <%=@patient.p_lastname%></h1>
   <%= render 'form', patient: @patient %>
   <%= link_to 'Show', @patient, class: "btn btn-secondary" %> |
- <%= link_to 'Back', patients_path, class: "btn btn-info" %>
+  <%= link_to 'Back', patients_path, class: "btn btn-info" %>
 </div>

@@ -4,12 +4,14 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    @patients = Patient.paginate(page: params[:page], per_page: 7)
+    
   end
 
   # GET /patients/1
   # GET /patients/1.json
   def show
+    
   end
 
   # GET /patients/new

@@ -16,7 +16,7 @@
 class Patient < ApplicationRecord
   after_create :generate_qr
   has_one_attached :qr_code
-
+  
   validates :name, presence: true, length: { minimum: 3 }
   validates :birth, presence: true, length: { minimum: 3 }
   validates :emergency_number, presence: true, length: { in: 3..10 }, uniqueness: { case_sensitive: false },numericality: { greater_than_or_equal_to: 1 }
@@ -42,7 +42,7 @@ class Patient < ApplicationRecord
       module_px_size: 6,
       resize_exactly_to: false,
       resize_gte_to: false,
-      size: 120
+      size: 220
     )
     
     IO.binwrite("app/assets/images/qrcode#{self.hexa_code}.png", png.to_s)
