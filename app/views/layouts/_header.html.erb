@@ -21,26 +21,26 @@
           <li class="nav-item <%= 'active' if request.path == root_path%> ">
             <%= link_to "Inicio", root_path, class: 'nav-link'%>
           </li>
-          <li class="nav-item">
-            <a
-                class="nav-link"
-                href="#"
-                data-toggle="modal"
-                data-target="#modalLog"
-              >
-              Perfil
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.full_name %>
             </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Editar perfil", edit_user_registration_path, class: 'dropdown-item'%>
+            </div>
           </li>
-          <li class="nav-item">
-            <a
-                class="nav-link"
-                href="#"
-                data-toggle="modal"
-                data-target="#modalSign"
-                >Patients
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Pacientes
             </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Buscar", my_patients_path, class: 'nav-link', class: 'dropdown-item'%>
+              <%= link_to "Pacientes", patients_path, class: 'nav-link', class: 'dropdown-item'%>
+            </div>
           </li>
-        <% else %>
+          <li class="nav-item text-danger">
+            <%= link_to "Salir", destroy_user_session_path, method: :delete, class: 'nav-link'%>
+          </li>
         <% end%>
       </ul>
     </div>

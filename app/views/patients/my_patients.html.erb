@@ -1,0 +1,22 @@
+<div class="container my-4">
+  <h1>Buscar paciente</h1>
+  <div class="py-2">
+    <h3>Buscar Paciente</h3>
+    <%= form_tag search_patient_path, remote: true, method: :get do %>
+      <div class="form-group row">
+        <div class="col-12">
+          <div class="input-group">
+            <%= text_field_tag :patient, params[:patient], placeholder: "Codigo QR", autofocus: true, class: "form-control form-control-lg"%>
+            <div class="input-group-append">
+              <%= button_tag type: :submit, class: "btn btn-info" do %>
+                Search
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div id="results">
+  </div>
+</div>

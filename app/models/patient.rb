@@ -12,11 +12,12 @@
 #  phase            :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  user_id          :integer
 #
 class Patient < ApplicationRecord
   after_create :generate_qr
   has_one_attached :qr_code
-  
+  belongs_to :user
   validates :name, presence: true, length: { minimum: 3 }
   validates :birth, presence: true, length: { minimum: 3 }
   validates :emergency_number, presence: true, length: { in: 3..10 }, uniqueness: { case_sensitive: false },numericality: { greater_than_or_equal_to: 1 }
@@ -24,7 +25,12 @@ class Patient < ApplicationRecord
   validates :p_lastname, presence: true, length: { minimum: 3 }
   validates :phase, presence: true, length: { is: 1 }
 
-  private 
+  def self.search(param)
+    param.strip!
+    to_send_back = self.find_by_hexa_code(param)
+    return nil unless to_send_back
+    to_send_back
+  end
   
   def generate_qr
     self.hexa_code = SecureRandom.hex
@@ -49,5 +55,7 @@ class Patient < ApplicationRecord
     
     self.qr_code.attach(io: File.open("app/assets/images/qrcode#{self.hexa_code}.png"), filename: "qrcode#{self.hexa_code}.png")
   end
+
+  
 
 end

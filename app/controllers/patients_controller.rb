@@ -1,8 +1,8 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
 
-  # GET /patients
-  # GET /patients.json
+  
+
   def index
     @patients = Patient.paginate(page: params[:page], per_page: 7)
     
@@ -27,7 +27,7 @@ class PatientsController < ApplicationController
   # POST /patients.json
   def create
     @patient = Patient.new(patient_params)
-
+    @patient.user = current_user
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
@@ -53,6 +53,26 @@ class PatientsController < ApplicationController
     end
   end
 
+  def search
+    if params[:patient].present?
+      @patient = Patient.search(params[:patient])
+      if @patient
+        respond_to do |format|
+          format.js { render partial: 'patients/patient_result' }
+        end
+      else
+        respond_to do |format|
+          flash.now[:alert] = 'Could not find user!'
+          format.js { render partial: 'patients/patient_result' }
+        end
+      end
+    else
+      respond_to do |format|
+        flash.now[:alert] ='Porfavor ingrese un codigo QR!'
+        format.js { render partial: 'patients/patient_result'}
+      end
+    end
+  end
   # DELETE /patients/1
   # DELETE /patients/1.json
   def destroy
@@ -62,6 +82,9 @@ class PatientsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
