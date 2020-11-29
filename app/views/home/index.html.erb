@@ -20,7 +20,7 @@
         <div class="container">
           <div class="row align-items-center ">
             <div class="col-12 col-lg-6 text-left ">
-              <img id="main-logo" src="assets/logocolor.png" alt="Logo" />
+              <%= image_tag("logocolor.png", :alt => "logo" ,:id => "main-logo") %>
               <h5 class="d-none d-md-block">
                 El objetivo de este proyecto consiste en ayudar a personas
                 enfermas de Alzheimer proporcionándoles ayuda inmediata.
@@ -86,12 +86,12 @@
         </div>
       </div>
     </div>
-    <div class="row mb-5 text-center">
+    <div  class="row mb-5 text-center">
       <div class="col">
         <h3  class="display-4"> Tarjeta de identifiacion </h3>
         Se permitirá descargar el QR, que sera colocado 
         en la plantilla de tarjeta que podra descargar a continuacion. 
-        <img src="assets/ejemplotarjeta.png" width="400px" alt="Tarjeta">
+        <%= image_tag("ejemplotarjeta.png", :alt => "logo", :id => "identificacion") %>
       </div>
     </div>
     <div class="row mb-5 text-center">
